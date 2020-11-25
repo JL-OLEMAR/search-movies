@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Title } from './components/Title'
+import { SearchForm } from './components/SearchForm'
+import { MoviesList } from './components/MoviesList'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import 'bulma/css/bulma.css'
+class App extends Component {
+  state = { results: [] }
+
+  _handleResults = (results) => {
+    this.setState({ results })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Title>Search Movies</Title>
+        <div className="SearchForm-wrapper">
+          <SearchForm onResults={this._handleResults} />
+        </div>
+        {
+          this.state.results.length === 0
+            ? <p>Sin resultados</p>
+            : <MoviesList movies={this.state.results} />
+        }
+      </div >
+    );
+  }
 }
 
 export default App;
