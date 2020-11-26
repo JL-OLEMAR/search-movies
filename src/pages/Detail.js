@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const API_KEY = 'fbb6e726'
+import { ButtonBackToHome } from '../components/ButtonBackToHome'
 
+const API_KEY = 'fbb6e726'
 export class Detail extends Component {
     static propTypes = {
         match: PropTypes.shape({
@@ -38,7 +39,7 @@ export class Detail extends Component {
         const { Title, Poster, Runtime, Language, Actors, Metascore, Plot } = this.state.movie
         return (
             <div>
-                <button onClick={this._goBack}>Volver</button>
+                <ButtonBackToHome />
                 <h1>{Title}</h1>
                 <img src={Poster} />
                 <h3>{Language} | {Runtime}</h3>
